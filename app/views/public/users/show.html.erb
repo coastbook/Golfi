@@ -1,0 +1,25 @@
+<div class="container" style="margin-top: 50px;">
+ <div class="shadow p-3 mb-5 bg-white rounded">
+  <div class="row">
+    <div class="col-md-12" style="text-align: left;  ">
+        <h2 class="p-3 mb-2 bg-dark text-white">マイページ</h2>
+    </div>
+　</div>
+    <div class="row">
+        <div class="col-md-12" style="text-align: center;margin-top:30px;margin-bottom:30px;">
+            <h4 class="border-bottom text-left">　会員情報</h4>
+            <table class="table table-borderless">
+                    <tr>
+                      <th style="w-30">氏名</th>
+                      <td><%= @user.name %></td>
+                    </tr>
+                    <tr>
+                        <th style="w-30">メールアドレス</th>
+                        <td><%= @user.email %></td>
+                    </tr>
+            </table> 
+            <%= link_to "編集する", edit_public_user_path(current_user), class: "btn btn-outline-success w-75" %>
+        </div>
+    </div>
+  </div>
+</div>

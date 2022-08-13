@@ -1,0 +1,36 @@
+<div class="container" style="margin-top: 50px;">
+  <div class="col-md-8 offset-md-2"> 
+<div class="shadow p-3 mb-5 bg-white rounded">
+
+  <h2 class="p-3 mb-2 bg-dark text-white">ユーザ一覧</h2>
+  <p id="notice"></p>
+  <table class="table table-hover">
+    <thead>
+      <tr class="table-secondary">
+        <th>ユーザID</th>
+        <th>氏名</th>
+        <th>メールアドレス</th>
+        <th colspan="5"></th>
+      </tr>
+    </thead>
+      <% @users.each do |user| %><%# @publics = Public.allですべてのPublicユーザーの情報を取得して、順番に並べて表示 %>
+    <tbody>
+      <tr>
+      <td><%= user.id %></td>
+
+      <td>
+        <%= link_to user.name, public_user_path(user.id) %>
+      </td>
+
+      <td><%= user.email %></td>
+
+      
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+</div>
+</div>
