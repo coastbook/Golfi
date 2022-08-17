@@ -1,0 +1,59 @@
+<header>
+  
+<nav class="navbar navbar-expand-lg bg-white">
+<div class="container">
+
+<% if user_signed_in? %> <%# ここから次のelsifの列にいくまでがpublic_userのヘッダー%>
+
+  <h2 class="nav-link text-left">
+    <%= link_to root_path, class: "nav-link text-dark" do %>
+      <i class="fas fa-golf-ball-tee"></i> Golfi
+    <% end %>
+  </h2>
+
+  <li class="list-unstyled">ようこそ、<%= current_user.name %>さん！</li>
+
+  <li class="nav-link text-dark"><%= link_to "マイページ", public_user_path(current_user), class: "nav-link text-dark" %></li>
+
+  <li class="nav-link text-dark"><%= link_to "コラム一覧", public_columns_path, class: "nav-link text-dark" %></li>
+
+  <li class="nav-link text-dark"><%= link_to "会員一覧", public_users_path, class: "nav-link text-dark" %></li>
+
+  <li class="nav-link text-dark"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link text-dark" %></li>
+
+<% elsif admin_signed_in? %>
+
+  <h2 class="nav-link text-left">
+    <%= link_to admin_root_path, class: "nav-link text-dark" do %>
+      <i class="fas fa-golf-ball-tee"></i> Golfi
+    <% end %>
+  </h2>
+
+  <li class="nav-link text-dark"><%= link_to "コラム一覧", admin_columns_path, class: "nav-link text-dark" %></li>
+
+  <li class="nav-link text-dark"><%= link_to "会員一覧", admin_users_path, class: "nav-link text-dark" %></li>
+
+  <li class="nav-link text-dark"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-dark" %></li>
+
+<% else %>
+
+  <h2 class="nav-link text-left">
+    <%= link_to root_path, class: "nav-link text-dark" do %>
+      <i class="fas fa-golf-ball-tee"></i> Golfi
+    <% end %>
+  </h2>
+  
+  <li class="nav-link text-dark"><%= link_to "About", about_path, class: "nav-link text-dark" %></li>
+
+  <li class="nav-link text-dark"><%= link_to "コラム一覧", public_columns_path, class: "nav-link text-dark" %></li>
+
+  <li class="nav-link text-dark"><%= link_to "新規登録" ,new_user_registration_path, class: "nav-link text-dark" %></li>
+
+  <li class="nav-link text-dark"><%= link_to "ログイン" ,new_user_session_path, class: "nav-link text-dark" %></li>
+
+<% end %>
+
+</div>
+</nav>
+
+</header>
