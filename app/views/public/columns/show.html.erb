@@ -21,9 +21,15 @@
       <td>コラム名</td><td><%= @column.title %></td>
       <tr><td>コラム</td><td><%= @column.body %></td></tr>
           <tr>
-            <td><%= link_to '編集する', edit_public_column_path(@column.id), class: "btn btn-outline-success" %></td>
-            <td><%= link_to "一覧に戻る", public_column_path, class: "btn btn-outline-success" %></td>  <%#　なんとなく不便だったのでつけました %>
-          </tr> 
+            <td><%= link_to "一覧に戻る", public_columns_path, class: "btn btn-outline-success" %></td>
+            <% if @column.user == current_user %>
+              <td><%= link_to '編集する', edit_public_column_path(@column.id), class: "btn btn-outline-success" %></td>
+              <td><%= link_to "削除", public_column_path(@column), class: "btn btn-outline-success", method: :delete %></td>
+            <% else %>
+              <td></td>
+              <td></td>
+            <% end %>
+          </tr>
       </tbody>
     </table>
     </div>

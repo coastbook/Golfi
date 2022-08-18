@@ -9,7 +9,8 @@ class Public::ColumnsController < ApplicationController
 
   def create
     @column = Column.new(column_params)
-    if @column.save
+    @column.user_id = current_user.id
+    if @column.save!
       redirect_to public_column_path(@column)
       flash[:notice] = '新しいコラムを登録しました。'
     else
@@ -35,8 +36,14 @@ class Public::ColumnsController < ApplicationController
     end
   end
 
+  def destroy
+    @column = Column.find(params[:id])
+    @column.destroy
+    redirect_to public_columns_path
+  end
+
   private
-  
+
   def column_params
   	params.require(:column).permit(:title,:body,:is_active,:image)
   end

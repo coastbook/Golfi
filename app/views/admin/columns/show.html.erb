@@ -24,7 +24,8 @@
       　</tr>
       　<tr>
         　<td><%= link_to '編集する', edit_admin_column_path(@column.id), class: "btn btn-outline-success" %></td>
-          <td><%= link_to "一覧に戻る", admin_columns_path, class: "btn btn-outline-success" %></td>  <%#　なんとなく不便だったのでつけました %>
+          <td><%= link_to "一覧に戻る", admin_columns_path, class: "btn btn-outline-success" %></td>
+          <td><%= link_to "削除", admin_column_path(@column), class: "btn btn-outline-success", method: :delete %></td>
           </tr> 
       </tbody>
     </table>

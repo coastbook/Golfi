@@ -34,6 +34,12 @@ class Admin::ColumnsController < ApplicationController
       render :"show"
     end
   end
+  
+  def destroy
+    @column = Column.find(params[:id])
+    @column.destroy
+    redirect_to admin_columns_path
+  end
 
   private
   

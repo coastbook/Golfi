@@ -17,14 +17,14 @@ Rails.application.routes.draw do
   get 'public/homes/about' => 'public/homes#about', as: 'about'
 
   namespace :public do
-    resources :users, only:[:index,:show,:edit,:update]
-    resources :columns, only:[:index,:new,:create,:show,:edit,:update]
+    resources :users, only:[:index,:show,:edit,:update,:destroy]
+    resources :columns, only:[:index,:new,:create,:show,:edit,:update,:destroy]
   end
 
   namespace :admin do
     root to: 'homes#top'
-    resources :users, only:[:index,:show,:edit,:update]
-    resources :columns, only:[:index,:new,:create,:show,:edit,:update]
+    resources :users, only:[:index,:show,:edit,:update,:destroy]
+    resources :columns, only:[:index,:new,:create,:show,:edit,:update,:destroy]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -6,7 +6,6 @@
       <h2 class="p-3 mb-2 bg-dark text-white">コラム新規登録</h2>
       <p id="notice"></p>
         <%= form_with model:@column, url: public_columns_path, method: :post do |f| %>
-          <form>
             <div class="form-group", style="text-align: left;",>
               <p id="notice"></p>
                <%= f.label :コラム画像 %>
@@ -28,7 +27,6 @@
                 <%= f.submit "新規登録", class: "btn btn-outline-success"  %>
               </div>
             </div>
-          </form>
         <% end %>
     </div>
   </div>

@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2022_08_16_091305) do
   end
 
   create_table "columns", force: :cascade do |t|
+    t.integer "user_id"
     t.string "title"
     t.text "body"
     t.datetime "created_at", precision: 6, null: false

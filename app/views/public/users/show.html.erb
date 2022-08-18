@@ -9,17 +9,22 @@
         <div class="col-md-12" style="text-align: center;margin-top:30px;margin-bottom:30px;">
             <h4 class="border-bottom text-left">　会員情報</h4>
             <table class="table table-borderless">
-                    <tr>
-                      <th style="w-30">氏名</th>
-                      <td><%= @user.name %></td>
-                    </tr>
-                    <tr>
-                        <th style="w-30">メールアドレス</th>
-                        <td><%= @user.email %></td>
-                    </tr>
+              <tr>
+                <th style="w-30">氏名</th>
+                <td><%= @user.name %></td>
+              </tr>
+              <tr>
+              <th style="w-30">メールアドレス</th>
+                <td><%= @user.email %></td>
+              </tr>
             </table> 
-            <%= link_to "編集する", edit_public_user_path(current_user), class: "btn btn-outline-success w-75" %>
-        </div>
+            <% if @user == current_user %>
+              <td><%= link_to "編集する", edit_public_user_path(current_user), class: "btn btn-outline-success w-75" %></td>
+              <td><%= link_to "削除", public_user_path(@user), class: "btn btn-outline-success", method: :delete %></td>
+            <% else %>
+              <td></td>
+              <td></td>
+            <% end %>
     </div>
   </div>
 </div>

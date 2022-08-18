@@ -1,4 +1,4 @@
 class Column < ApplicationRecord
   has_one_attached :image
-  belongs_to :user
+  belongs_to :user, optional: true
 end
