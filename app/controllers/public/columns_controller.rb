@@ -20,6 +20,7 @@ class Public::ColumnsController < ApplicationController
 
   def show
     @column = Column.find(params[:id])
+    @post_comment = PostComment.new
   end
 
   def edit

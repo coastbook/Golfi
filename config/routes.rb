@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
 
+  namespace :public do
+    get 'relationships/followings'
+    get 'relationships/followers'
+  end
     # 顧客用
   # URL /customers/sign_in ...
   devise_for :users,skip: [:passwords], controllers: {
@@ -17,12 +21,18 @@ Rails.application.routes.draw do
   get 'public/homes/about' => 'public/homes#about', as: 'about'
 
   namespace :public do
-    resources :users, only:[:index,:show,:edit,:update,:destroy]
-    resources :columns, only:[:index,:new,:create,:show,:edit,:update,:destroy]
+    resources :users, only:[:index,:show,:edit,:update,:destroy] do
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+    end
+    resources :columns, only:[:index,:new,:create,:show,:edit,:update,:destroy] do
+      resources :post_comments, only: [:create]
+    end
   end
 
   namespace :admin do
-    root to: 'homes#top'
+    root to: 'public/homes#top'
     resources :users, only:[:index,:show,:edit,:update,:destroy]
     resources :columns, only:[:index,:new,:create,:show,:edit,:update,:destroy]
   end
