@@ -25,6 +25,7 @@
                 <td><%= @user.email %></td>
               </tr>
             </table>
+            <p><%=link_to"お気に入り記事",favorites_public_user_path(@user) %></p>
             <% if @user == current_user %>
               <td><%= link_to "編集する", edit_public_user_path(current_user), class: "btn btn-outline-success w-75" %></td>
               <td><%= link_to "削除", public_user_path(@user), class: "btn btn-outline-success", method: :delete %></td>

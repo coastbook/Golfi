@@ -68,3 +68,6 @@ gem 'net-imap'
 gem 'devise'
 gem 'kaminari'
 gem 'enum_help'
+
+gem 'bootstrap', '~> 4.3.1'
+gem 'jquery-rails'

@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   namespace :public do
     get 'relationships/followings'
     get 'relationships/followers'
@@ -22,20 +21,26 @@ Rails.application.routes.draw do
 
   namespace :public do
     resources :users, only:[:index,:show,:edit,:update,:destroy] do
+      member do
+        get :favorites
+      end
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
     end
     resources :columns, only:[:index,:new,:create,:show,:edit,:update,:destroy] do
+      resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create]
     end
   end
 
   namespace :admin do
-    root to: 'public/homes#top'
+    root to: 'homes#top'
     resources :users, only:[:index,:show,:edit,:update,:destroy]
     resources :columns, only:[:index,:new,:create,:show,:edit,:update,:destroy]
   end
+
+  get "search" => "searches#search"
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
