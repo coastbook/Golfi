@@ -23,6 +23,9 @@ Rails.application.routes.draw do
     resources :users, only:[:index,:show,:edit,:update,:destroy] do
       member do
         get :favorites
+        patch :release
+        patch :nonrelease
+        
       end
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
@@ -30,14 +33,16 @@ Rails.application.routes.draw do
     end
     resources :columns, only:[:index,:new,:create,:show,:edit,:update,:destroy] do
       resource :favorites, only: [:create, :destroy]
-      resources :post_comments, only: [:create]
+      resources :post_comments, only: [:create, :destroy]
     end
   end
 
   namespace :admin do
     root to: 'homes#top'
     resources :users, only:[:index,:show,:edit,:update,:destroy]
-    resources :columns, only:[:index,:new,:create,:show,:edit,:update,:destroy]
+    resources :columns, only:[:index,:new,:create,:show,:edit,:update,:destroy] do
+      resources :post_comments, only: [:destroy]
+    end
   end
 
   get "search" => "searches#search"

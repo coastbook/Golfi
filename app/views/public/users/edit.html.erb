@@ -14,7 +14,7 @@
                 <th>
                   <%= f.label :氏名 %>
                 </th>
-                <td>氏名
+                <td>
 　　　　　　　  　<%= f.text_field :name,:size=>"40" %>
                 </td>
               </tr>
@@ -22,7 +22,7 @@
                 <th>メールアドレス</th>
                 <td colspan="2"><%= f.text_field :email, :size=>"40",autofocus: true, autocomplete: "email" %></td>
               </tr>
-            </table> 
+            </table>
         </div>
     </div>
     <div class="row">
@@ -35,6 +35,11 @@
       <div class="col-md-5"style="text-align: center;margin-top: 30px; margin-bottom: 60px;">
       </div>
     </div>
+    <% if @user.released? %>
+      <%= link_to '非公開にする',nonrelease_public_user_path(@user), method: :patch%>
+    <% else %>
+      <%= link_to '公開する',release_public_user_path(@user), method: :patch%>
+    <% end %>
   </div>
 </div>
-  
+

@@ -7,6 +7,11 @@ class Public::PostCommentsController < ApplicationController
     comment.save
     redirect_to public_column_path(column)
   end
+  
+  def destroy
+    PostComment.find(params[:id]).destroy
+    redirect_to public_column_path(params[:column_id])
+  end
 
   private
 

@@ -14,6 +14,8 @@ class User < ApplicationRecord
          # 一覧画面で使う
          has_many :followings, through: :relationships, source: :followed
          has_many :followers, through: :reverse_of_relationships, source: :follower
+         
+         enum status:{nonreleased: 0, released: 1}
   
   # フォローしたときの処理
   def follow(user_id)

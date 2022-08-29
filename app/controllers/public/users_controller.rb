@@ -1,7 +1,9 @@
 class Public::UsersController < ApplicationController
+  
   def index
-    @users = User.all
+    @users = User.where(status: "1")
   end
+  
   def show
     @user = User.find(params[:id])
   end
@@ -28,8 +30,20 @@ class Public::UsersController < ApplicationController
   
   def favorites
     @user = User.find(params[:id])
-    favorites= Favorite.where(user_id: @user.id).pluck(:column_id)
+    @user.favorites.pluck(:column_id)
     @favorite_columns = Column.find(favorites)
+  end
+  
+  def release
+    @user = User.find(params[:id])
+    @user.released! unless @user.released?
+    redirect_to  edit_public_user_path(@user), notice: 'このアカウントを公開しました'
+  end
+
+  def nonrelease
+    @user = User.find(params[:id])
+    @user.nonreleased! unless @user.nonreleased?
+    redirect_to  edit_public_user_path(@user), notice: 'このアカウントを非公開にしました'
   end
   
  private

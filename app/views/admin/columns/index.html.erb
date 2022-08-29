@@ -13,11 +13,13 @@
         <tr class="table-secondary">
           <th>コラムID</th>
           <th>コラム名</th>
+          <th></th>
         </tr>
           <% @columns.each do |column| %>
             <tr class="table-borderless">
               <td><%= column.id %></td>
               <td><%= link_to column.title, admin_column_path(column) %></td>
+              <td><%= link_to "#{column.post_comments.count} コメント", admin_column_path(column.id) %></td>
             </tr>
             <% end %>
       </table>
