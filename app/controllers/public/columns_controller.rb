@@ -1,4 +1,6 @@
 class Public::ColumnsController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     @columns = Column.all.page(params[:page]).per(10)
   end
