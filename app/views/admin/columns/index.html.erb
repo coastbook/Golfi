@@ -11,14 +11,34 @@
       <p id="notice"></p>
       <table class="table table-hover">
         <tr class="table-secondary">
-          <th>コラムID</th>
+          <th>ユーザ名</th>
           <th>コラム名</th>
+          <th></th>
           <th></th>
         </tr>
           <% @columns.each do |column| %>
             <tr class="table-borderless">
-              <td><%= column.id %></td>
+              <td><%= link_to column.user.name, admin_user_path(column.user.id) %></td>
               <td><%= link_to column.title, admin_column_path(column) %></td>
+              <td>
+                <% if user_signed_in? %>
+                  <% if column.favorited_by?(current_user) %>
+                    <p>
+                      <%= link_to public_column_favorites_path(column), method: :delete, remote: true do %>
+                        ♥<%= column.favorites.count %>
+                      <% end %>
+                    </p>
+                  <% else %>
+                    <p>
+                      <%= link_to public_column_favorites_path(column), method: :post, remote: true do %>
+                        ♡<%= column.favorites.count %>
+                      <% end %>
+                    </p>
+                  <% end %>
+                <% else %>
+                  ♡<%= column.favorites.count %>
+                <% end %>
+              </td>
               <td><%= link_to "#{column.post_comments.count} コメント", admin_column_path(column.id) %></td>
             </tr>
             <% end %>

@@ -16,21 +16,14 @@
       <% @users.each do |user| %><%# @publics = Public.allですべてのPublicユーザーの情報を取得して、順番に並べて表示 %>
     <tbody>
       <tr>
-      <td><%= user.id %></td>
-
-      <td>
-        <%= link_to user.name, public_user_path(user.id) %>
-      </td>
-
-      <td><%= user.email %></td>
-
-      
+        <td><%= user.id %></td>
+        <td><%= link_to user.name, public_user_path(user.id) %></td>
+        <td><%= user.email %></td>
       </tr>
       <% end %>
     </tbody>
   </table>
 </div>
-
 
 </div>
 </div>
