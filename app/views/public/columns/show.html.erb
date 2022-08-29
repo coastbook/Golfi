@@ -18,18 +18,19 @@
     <div class="col-md-6 offset-1"style="margin-top: 150px;">
     <table class="table">
       <tbody>
-      <td>コラム名</td><td><%= @column.title %></td>
-      <tr><td>コラム</td><td><%= @column.body %></td></tr>
-          <tr>
-            <td><%= link_to "一覧に戻る", public_columns_path, class: "btn btn-outline-success" %></td>
-            <% if @column.user == current_user %>
-              <td><%= link_to '編集する', edit_public_column_path(@column.id), class: "btn btn-outline-success" %></td>
-              <td><%= link_to "削除", public_column_path(@column), class: "btn btn-outline-success", method: :delete %></td>
-            <% else %>
-              <td></td>
-              <td></td>
-            <% end %>
-          </tr>
+        <td>ユーザ名</td><td><%= link_to @column.user.name, public_user_path(@column.user.id) %></td>
+        <tr><td>コラム</td><td><%= @column.body %></td></tr>
+        <tr><td>コラム名</td><td><%= @column.title %></td></tr>
+        <tr>
+          <td><%= link_to "一覧に戻る", public_columns_path, class: "btn btn-outline-success" %></td>
+          <% if @column.user == current_user %>
+            <td><%= link_to '編集する', edit_public_column_path(@column.id), class: "btn btn-outline-success" %></td>
+            <td><%= link_to "削除", public_column_path(@column), class: "btn btn-outline-success", method: :delete %></td>
+          <% else %>
+            <td></td>
+            <td></td>
+          <% end %>
+        </tr>
       </tbody>
     </table>
     </div>
