@@ -1,4 +1,12 @@
-いいね一覧
-<% @favorite_columns.each do |column|%>
-<%=column.title %>
+<% if @favorite_columns.present? %>
+
+  <h2>いいね一覧</h2>
+  <% @favorite_columns.each do |column|%>
+    <%= link_to column.title, public_column_path(column) %>
+  <% end %>
+  
+<% else %>
+
+  <p>いいねはありません</p>
+  
 <% end %>

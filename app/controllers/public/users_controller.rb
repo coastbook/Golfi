@@ -30,7 +30,7 @@ class Public::UsersController < ApplicationController
   
   def favorites
     @user = User.find(params[:id])
-    @user.favorites.pluck(:column_id)
+    favorites = Favorite.where(user_id: @user.id).pluck(:column_id)
     @favorite_columns = Column.find(favorites)
   end
   
