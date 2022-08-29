@@ -1,4 +1,6 @@
 class Admin::ColumnsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @columns = Column.all.page(params[:page]).per(10)
   end

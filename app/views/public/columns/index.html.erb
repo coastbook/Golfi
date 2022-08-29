@@ -20,6 +20,7 @@
           <td><%= link_to column.user.name, public_user_path(column.user.id) %></td>
           <td><%= link_to column.title, public_column_path(column) %></td>
           <td>
+            <% if user_signed_in? || admin_signed_in? %>
             <% if column.favorited_by?(current_user) %>
               <p>
                 <%= link_to public_column_favorites_path(column), method: :delete, remote: true do %>
@@ -32,6 +33,9 @@
                   ♡<%= column.favorites.count %>
                 <% end %>
               </p>
+            <% end %>
+            <% else %>
+            ♡<%= column.favorites.count %>
             <% end %>
           </td>
           <td><%= link_to "#{column.post_comments.count} コメント", public_column_path(column.id) %></td>
