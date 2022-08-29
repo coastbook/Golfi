@@ -1,6 +1,6 @@
 class Public::ColumnsController < ApplicationController
-  before_action :authenticate_user!
-  
+  before_action :authenticate_user!, only: [:show,:new,:create,:edit,:update,:destroy]
+
   def index
     @columns = Column.all.page(params[:page]).per(10)
   end
