@@ -7,19 +7,19 @@
 
   <h2 class="nav-link text-left">
     <%= link_to root_path, class: "nav-link text-dark" do %>
-      <i class="fas fa-golf-ball"></i> Golfi
+      <i class="fas fa-golf-ball"></i>Golfi
     <% end %>
   </h2>
 
-  <li class="list-unstyled">ようこそ、<%= current_user.name %>さん！</li>
+  <li class="list-unstyled">Welcome!<br><%= current_user.name %>!</li>
 
-  <li class="nav-link text-dark"><%= link_to "マイページ", public_user_path(current_user), class: "nav-link text-dark" %></li>
+  <li class="nav-link text-dark"><%= link_to "MyPage", public_user_path(current_user), class: "nav-link text-dark" %></li>
 
-  <li class="nav-link text-dark"><%= link_to "コラム一覧", public_columns_path, class: "nav-link text-dark" %></li>
+  <li class="nav-link text-dark"><%= link_to "Column", public_columns_path, class: "nav-link text-dark" %></li>
 
-  <li class="nav-link text-dark"><%= link_to "会員一覧", public_users_path, class: "nav-link text-dark" %></li>
+  <li class="nav-link text-dark"><%= link_to "User", public_users_path, class: "nav-link text-dark" %></li>
 
-  <li class="nav-link text-dark"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link text-dark" %></li>
+  <li class="nav-link text-dark"><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link text-dark" %></li>
 
   <li class="nav-link text-dark"><%= render "layouts/search" %></li>
 
@@ -31,11 +31,11 @@
     <% end %>
   </h2>
 
-  <li class="nav-link text-dark"><%= link_to "コラム一覧", admin_columns_path, class: "nav-link text-dark" %></li>
+  <li class="nav-link text-dark"><%= link_to "column", admin_columns_path, class: "nav-link text-dark" %></li>
 
-  <li class="nav-link text-dark"><%= link_to "会員一覧", admin_users_path, class: "nav-link text-dark" %></li>
+  <li class="nav-link text-dark"><%= link_to "User", admin_users_path, class: "nav-link text-dark" %></li>
 
-  <li class="nav-link text-dark"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-dark" %></li>
+  <li class="nav-link text-dark"><%= link_to "Logout", destroy_admin_session_path, method: :delete, class: "nav-link text-dark" %></li>
 
   <li class="nav-link text-dark"><%= render "layouts/search" %></li>
 
@@ -49,11 +49,11 @@
 
   <li class="nav-link text-dark"><%= link_to "About", about_path, class: "nav-link text-dark" %></li>
 
-  <li class="nav-link text-dark"><%= link_to "コラム一覧", public_columns_path, class: "nav-link text-dark" %></li>
+  <li class="nav-link text-dark"><%= link_to "Column", public_columns_path, class: "nav-link text-dark" %></li>
 
-  <li class="nav-link text-dark"><%= link_to "新規登録" ,new_user_registration_path, class: "nav-link text-dark" %></li>
+  <li class="nav-link text-dark"><%= link_to "SignUp" ,new_user_registration_path, class: "nav-link text-dark" %></li>
 
-  <li class="nav-link text-dark"><%= link_to "ログイン" ,new_user_session_path, class: "nav-link text-dark" %></li>
+  <li class="nav-link text-dark"><%= link_to "Login" ,new_user_session_path, class: "nav-link text-dark" %></li>
 
 <% end %>
 
