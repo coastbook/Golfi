@@ -1,0 +1,12 @@
+<% if @columns.present? %>
+
+  <h2>コラム一覧</h2>
+  <% @columns.each do |column|%>
+    <%= link_to column.title, public_column_path(column) %>
+  <% end %>
+  
+<% else %>
+
+  <p>投稿はありません</p>
+  
+<% end %>

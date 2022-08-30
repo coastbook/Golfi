@@ -22,10 +22,11 @@ Rails.application.routes.draw do
   namespace :public do
     resources :users, only:[:index,:show,:edit,:update,:destroy] do
       member do
+        get :user_columns
         get :favorites
         patch :release
         patch :nonrelease
-        
+
       end
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'

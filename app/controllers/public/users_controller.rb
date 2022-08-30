@@ -28,6 +28,9 @@ class Public::UsersController < ApplicationController
     redirect_to public_users_path
   end
   
+  def user_columns
+    @columns = Column.where(user_id:params[:id])
+  end
   
   def favorites
     @user = User.find(params[:id])
