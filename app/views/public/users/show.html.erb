@@ -2,41 +2,36 @@
  <div class="shadow p-3 mb-5 bg-white rounded">
   <div class="row">
     <div class="col-md-12" style="text-align: left;  ">
-        <h2 class="p-3 mb-2 bg-dark text-white">マイページ</h2>
+        <h2 class="p-3 mb-2 bg-dark text-white">会員情報</h2>
     </div>
 　</div>
     <div class="row">
         <div class="col-md-12" style="text-align: center;margin-top:30px;margin-bottom:30px;">
-            <h4 class="border-bottom text-left">　会員情報</h4>
             
-            <tr>
-              <% if @user != current_user %>
-              <% if current_user.following?(@user) %>
-                <%= link_to "フォロー中", public_user_relationships_path(@user.id), method: :delete, class: "btn btn-outline-primary" %>
-              <% else %>
-                <%= link_to "フォローする", public_user_relationships_path(@user.id), method: :post, class: "btn btn-primary" %>
-              <% end %>
-            <% end %>
-            </tr>
-            <tr>
-              <th>follows</th>
-              <th><u><%= link_to @user.followings.count, public_user_followings_path(user_id: @user.id) %></u></th>
-            </tr>
-            <tr>
-              <th>followers</th>
-              <th><u><%= link_to @user.followers.count, public_user_followers_path(user_id: @user.id) %></u></th>
-            </tr>
             
-
             <table class="table table-borderless">
-              <tr>
-                <th style="w-30">氏名</th>
-                <td><%= @user.name %></td>
+              <tr class="border-bottom">
+                <th class="h4" style="w-30"><%= @user.name %></th>
+                <td>
+                  <p>
+                    <% if @user != current_user %>
+                      <% if current_user.following?(@user) %>
+                        <%= link_to "フォロー中", public_user_relationships_path(@user.id), method: :delete, class: "btn btn-outline-primary" %>
+                      <% else %>
+                        <%= link_to "フォローする", public_user_relationships_path(@user.id), method: :post, class: "btn btn-primary" %>
+                      <% end %>
+                    <% end %>
+                    follows <u><%= link_to @user.followings.count, public_user_followings_path(user_id: @user.id) %></u>
+                    followers<u><%= link_to @user.followers.count, public_user_followers_path(user_id: @user.id) %></u>
+                  </p>
+                </td>
               </tr>
-              <tr>
-              <th style="w-30">メールアドレス</th>
-                <td><%= @user.email %></td>
-              </tr>
+              <% if @user == current_user %>
+                <tr>
+                  <th style="w-30">メールアドレス</th>
+                  <td><%= @user.email %></td>
+                </tr>
+              <% end %>
             </table>
             
             <p><u><%=link_to "コラム一覧", user_columns_public_user_path(@user) %></u></p>
