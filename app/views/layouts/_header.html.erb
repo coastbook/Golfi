@@ -11,15 +11,13 @@
     <% end %>
   </h2>
 
-  <li class="list-unstyled">Welcome!<br><%= current_user.name %>!</li>
-
-  <li class="nav-link text-dark"><%= link_to "MyPage", public_user_path(current_user), class: "nav-link text-dark" %></li>
+  <li class="nav-link text-dark"><%= link_to "My page", public_user_path(current_user), class: "nav-link text-dark" %></li>
 
   <li class="nav-link text-dark"><%= link_to "Column", public_columns_path, class: "nav-link text-dark" %></li>
 
   <li class="nav-link text-dark"><%= link_to "User", public_users_path, class: "nav-link text-dark" %></li>
 
-  <li class="nav-link text-dark"><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link text-dark" %></li>
+  <li class="nav-link text-dark"><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link text-dark" %></li>
 
   <li class="nav-link text-dark"><%= render "layouts/search" %></li>
 
@@ -35,7 +33,7 @@
 
   <li class="nav-link text-dark"><%= link_to "User", admin_users_path, class: "nav-link text-dark" %></li>
 
-  <li class="nav-link text-dark"><%= link_to "Logout", destroy_admin_session_path, method: :delete, class: "nav-link text-dark" %></li>
+  <li class="nav-link text-dark"><%= link_to "Log out", destroy_admin_session_path, method: :delete, class: "nav-link text-dark" %></li>
 
   <li class="nav-link text-dark"><%= render "layouts/search" %></li>
 
@@ -51,9 +49,9 @@
 
   <li class="nav-link text-dark"><%= link_to "Column", public_columns_path, class: "nav-link text-dark" %></li>
 
-  <li class="nav-link text-dark"><%= link_to "SignUp" ,new_user_registration_path, class: "nav-link text-dark" %></li>
+  <li class="nav-link text-dark"><%= link_to "Sign up" ,new_user_registration_path, class: "nav-link text-dark" %></li>
 
-  <li class="nav-link text-dark"><%= link_to "Login" ,new_user_session_path, class: "nav-link text-dark" %></li>
+  <li class="nav-link text-dark"><%= link_to "Log in" ,new_user_session_path, class: "nav-link text-dark" %></li>
 
 <% end %>
 

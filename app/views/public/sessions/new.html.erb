@@ -1,26 +1,42 @@
-<h2>Log in</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <h2>Log in</h2>
+    <h6 class="border-bottom text-left"  style="margin-top: 20px;">会員の方はこちらからログイン</h6>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <div class="form-group">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: "form-control"%>
+    </div>
+
+    <div class="field" style="margin-top: 20px;">
+      <%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="field">
+        <%= f.check_box :remember_me %>
+        <%= f.label :パスワードを登録する %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit "Log in", class: "btn btn-primary" %>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+  <div class="login" style="margin-top: 60px; margin-bottom: 70px;"></div>
+    <h6 class="border-bottom text-left">会員登録がお済みでない方</h6>
+      <p><%= render "public/shared/links" %>　から新規登録を行ってください</p>
+    <h6 class="border-bottom text-left">管理者の方</h6>
+      <p><%= link_to "こちら", "/admin/sign_in" %>　からログインを行ってください</p>
+    </div>
 
-<%= render "public/shared/links" %>
+  </div>
+    <div class="col-md-2" style="text-align: center; margin-top: 50px;"></div>
+</div>
+

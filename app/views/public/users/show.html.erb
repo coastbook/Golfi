@@ -8,14 +8,25 @@
     <div class="row">
         <div class="col-md-12" style="text-align: center;margin-top:30px;margin-bottom:30px;">
             <h4 class="border-bottom text-left">　会員情報</h4>
-
-            <% if @user != current_user %>
+            
+            <tr>
+              <% if @user != current_user %>
               <% if current_user.following?(@user) %>
-                <%= link_to "フォロー外す", public_user_relationships_path(@user.id), method: :delete %>
+                <%= link_to "フォロー中", public_user_relationships_path(@user.id), method: :delete, class: "btn btn-outline-primary" %>
               <% else %>
-                <%= link_to "フォローする", public_user_relationships_path(@user.id), method: :post %>
+                <%= link_to "フォローする", public_user_relationships_path(@user.id), method: :post, class: "btn btn-primary" %>
               <% end %>
             <% end %>
+            </tr>
+            <tr>
+              <th>follows</th>
+              <th><u><%= link_to @user.followings.count, public_user_followings_path(user_id: @user.id) %></u></th>
+            </tr>
+            <tr>
+              <th>followers</th>
+              <th><u><%= link_to @user.followers.count, public_user_followers_path(user_id: @user.id) %></u></th>
+            </tr>
+            
 
             <table class="table table-borderless">
               <tr>
@@ -27,15 +38,8 @@
                 <td><%= @user.email %></td>
               </tr>
             </table>
-            <tr>
-              <th>follows</th>
-              <th><%= link_to @user.followings.count, public_user_followings_path(user_id: @user.id) %></th>
-            </tr>
-            <tr>
-              <th>followers</th>
-              <th><%= link_to @user.followers.count, public_user_followers_path(user_id: @user.id) %></th>
-            </tr>
-            <p><%=link_to "お気に入り記事", favorites_public_user_path(@user) %></p>
+            
+            <p><u><%=link_to "お気に入り記事", favorites_public_user_path(@user) %></u></p>
             <% if @user == current_user %>
               <td><%= link_to "編集する", edit_public_user_path(current_user), class: "btn btn-outline-success w-75" %></td>
               <td><%= link_to "削除", public_user_path(@user), class: "btn btn-outline-success", method: :delete %></td>

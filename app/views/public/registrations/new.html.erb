@@ -1,34 +1,60 @@
-<h2>Sign up</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 shadow p-3 mb-5 bg-white rounded" style="margin-top: 50px; text-align: left;">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
-  
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-  </div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <h2 class="p-3 mb-2 bg-dark text-white text-left">Sign up</h2>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <%= render "public/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+      <table class="table table-hover">
+        <tr>
+          <th>
+            <%= f.label :name %>
+          </th>
+          <td>
+            <%= f.text_field :name, :size=>"40", autofocus: true, autocomplete: "name" %>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <%= f.label :email %>
+          </th>
+          <td>
+            <%= f.email_field :email, :size=>"40", autofocus: true, autocomplete: "email" %>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <%= f.label :password %>
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %>
+          </th>
+          <td>
+            <%= f.password_field :password, :size=>"40", autocomplete: "new-password" %>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <%= f.label :password_confirmation %>
+          </th>
+          <td>
+            <%= f.password_field :password_confirmation, :size=>"40", autocomplete: "new-password" %>
+          </td>
+        </tr>
+      </table>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+      <div class="actions" style="margin-top: 20px;">
+        <button class="btn btn-outline-success btn-lg w-100" type="submit">Sign up</button>
+      </div>
+    <% end %>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+        <div class="login" style="margin-top: 60px; margin-bottom: 40px;text-align: center;">
+          <h5 class="border-bottom text-left">既に登録済みの方</h5>
+          <p><%= render "public/shared/links"%>　からログインしてください</p>
+        </div>
 
-<%= render "public/shared/links" %>
+      </div>
+   </div>
+</div>
