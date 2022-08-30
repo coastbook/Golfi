@@ -7,8 +7,8 @@
 　</div>
     <div class="row">
         <div class="col-md-12" style="text-align: center;margin-top:30px;margin-bottom:30px;">
-            
-            
+
+
             <table class="table table-borderless">
               <tr class="border-bottom">
                 <th class="h4" style="w-30"><%= @user.name %></th>
@@ -33,7 +33,7 @@
                 </tr>
               <% end %>
             </table>
-            
+
             <p><u><%=link_to "コラム一覧", user_columns_public_user_path(@user) %></u></p>
             <p><u><%=link_to "お気に入りコラム", favorites_public_user_path(@user) %></u></p>
             <% if @user == current_user %>
