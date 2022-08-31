@@ -1,22 +1,20 @@
-<% if users.present? %>
-  <% users.each do |user| %>
-    <table>
-      <thead>
-        <tr>
-          <th>name</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><%= link_to user.name, public_user_path(user.id) %></td>
-          <td>フォロー数: <%= user.followings.count %></td>
-          <td>フォロワー数: <%= user.followers.count %></td>
-        </tr>
-      </tbody>
-    </table>
+<thead>
+  <tr class="table-secondary">
+    <th>氏名</th>
+    <th></th>
+    <th></th>
+  </tr>
+</thead>
+  <% @users.each do |user| %>
+  <tr class="table-borderless">
+    <td>
+      <% if user_signed_in? %>
+        <%= link_to user.name, public_user_path(user.id) %>
+      <% elsif admin_signed_in? %>
+        <%= link_to user.name, admin_user_path(user.id) %>
+      <% end %>
+    </td>
+    <td>follows <u><%= link_to user.followings.count, public_user_followings_path(user_id: user.id) %></u></td>
+    <td>followers <u><%= link_to user.followers.count, public_user_followers_path(user_id: user.id) %></u></td>
+  </tr>
   <% end %>
-<% else %>
-  <p>ユーザーはいません</p>
-<% end %>
