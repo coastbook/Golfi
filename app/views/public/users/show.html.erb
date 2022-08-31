@@ -23,6 +23,7 @@
                     <% end %>
                     follows <u><%= link_to @user.followings.count, public_user_followings_path(user_id: @user.id) %></u>
                     followers<u><%= link_to @user.followers.count, public_user_followers_path(user_id: @user.id) %></u>
+                    BestScore <%= @user.best_score %>
                   </p>
                 </td>
               </tr>
@@ -33,7 +34,8 @@
                 </tr>
               <% end %>
             </table>
-
+            
+            <p><u><%=link_to "クラブセット", user_clubs_public_user_path(@user) %></u></p>
             <p><u><%=link_to "コラム一覧", user_columns_public_user_path(@user) %></u></p>
             <p><u><%=link_to "お気に入りコラム", favorites_public_user_path(@user) %></u></p>
             <% if @user == current_user %>

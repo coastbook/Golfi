@@ -32,6 +32,10 @@ class Public::UsersController < ApplicationController
     @columns = Column.where(user_id:params[:id])
   end
   
+  def user_clubs
+    @clubs = Club.where(user_id:params[:id])
+  end
+  
   def favorites
     @user = User.find(params[:id])
     favorites = Favorite.where(user_id: @user.id).pluck(:column_id)
@@ -52,7 +56,7 @@ class Public::UsersController < ApplicationController
   
  private
   def user_params
-    params.require(:user).permit(:name,:email,:is_deleted)
+    params.require(:user).permit(:name,:email,:best_score,:is_deleted)
   end
   
 end

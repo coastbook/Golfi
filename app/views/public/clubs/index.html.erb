@@ -1,0 +1,29 @@
+<div class="container" style="margin-top: 50px;">
+  <div class="col-md-8 offset-md-2"> <%#.offset-md-1 は .col-md-9 を 1 カラムぶん右に移動%>
+    <div class="shadow p-3 mb-5 bg-white rounded">
+
+    <h2 class="p-3 mb-2 bg-dark text-white">クラブ一覧</h2>
+    <h1 class="text-right">
+      <%= link_to "＋　新規追加", new_public_club_path, class: "btn btn-dark rounded-pill" %>
+    </h1>
+
+      <p id="notice"></p>
+      <table class="table table-hover">
+        <tr class="table-secondary">
+          <th>タイプ</th>
+          <th>名前</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <% @clubs.each do |club| %>
+        <tr class="table-borderless">
+          <td><%= link_to club.club_type, public_club_path(club) %></td>
+          <td><%= link_to club.club_name, public_club_path(club)%></td>
+        </tr>
+        <% end %>
+        
+      </table>
+    </div>
+
+  </div>
+</div>

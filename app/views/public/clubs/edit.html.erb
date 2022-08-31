@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="col-md-8 offset-md-2"> 
+  <div class="shadow p-3 mb-5 bg-white rounded">
+    <div class="row">
+      <div class="col-md-12" style="text-align: left;">
+        <h2 class="p-3 mb-2 bg-dark text-white">クラブ編集</h2>
+       <p id="notice"></p>
+        <%= form_with model: @club, url: public_club_path, method: :patch do |f| %>
+        <form>
+          <table class="table table-borderless">
+          <tr>
+            <div class="form-group">
+            <div class="col-sm-10">
+            <p id="notice"></p>
+              <td><%= f.label :クラブ名, class: "mr-5" %></td>
+              <td><%= f.text_field :club_type %></td></tr>
+            <p id="notice"></p>
+              <tr>
+                <td><%= f.label :名前, class: "mr-5" %></td>
+                <td><%= f.text_area :club_name %></td>
+              </tr>
+               
+            </div>
+             </div>
+          </table>
+        <div class="form-group" style="text-align: center;">
+          <p id="notice"></p>
+            <%= f.submit ' 変更を保存 ' , class: "btn btn-outline-success" %> <%# submit等はform-groupでは囲まない %>
+        </div>
+        </form>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

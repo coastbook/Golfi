@@ -23,10 +23,10 @@ Rails.application.routes.draw do
     resources :users, only:[:index,:show,:edit,:update,:destroy] do
       member do
         get :user_columns
+        get :user_clubs
         get :favorites
         patch :release
         patch :nonrelease
-
       end
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
+    resources :clubs, only:[:index,:new,:create,:show,:edit,:update,:destroy]
   end
 
   namespace :admin do
