@@ -22,7 +22,7 @@
                       <% end %>
                     <% end %>
                     follows <u><%= link_to @user.followings.count, public_user_followings_path(user_id: @user.id) %></u>
-                    followers<u><%= link_to @user.followers.count, public_user_followers_path(user_id: @user.id) %></u>
+                    followers <u><%= link_to @user.followers.count, public_user_followers_path(user_id: @user.id) %></u>
                   </p>
                 </td>
               </tr>

@@ -29,10 +29,12 @@ class Public::UsersController < ApplicationController
   end
   
   def user_columns
+    @user = User.find(params[:id])
     @columns = Column.where(user_id:params[:id])
   end
   
   def user_clubs
+    @user = User.find(params[:id])
     @clubs = Club.where(user_id:params[:id])
   end
   

@@ -2,9 +2,11 @@
   <div class="col-md-8 offset-md-2"> <%#.offset-md-1 は .col-md-9 を 1 カラムぶん右に移動%>
     <div class="shadow p-3 mb-5 bg-white rounded">
 
-    <h2 class="p-3 mb-2 bg-dark text-white">クラブ一覧</h2>
+    <h2 class="p-3 mb-2 bg-dark text-white"><%= link_to @user.name, public_user_path(@user) %>さんのクラブ一覧</h2>
     <h1 class="text-right">
-      <%= link_to "＋　新規追加", new_public_club_path, class: "btn btn-dark rounded-pill" %>
+      <% if @user == current_user %>
+        <%= link_to "＋　新規追加", new_public_club_path, class: "btn btn-dark rounded-pill" %>
+      <% end %>
     </h1>
 
       <p id="notice"></p>

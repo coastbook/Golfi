@@ -1,12 +1,39 @@
-<% if @favorite_columns.present? %>
+<div class="container" style="margin-top: 50px;">
+  <div class="col-md-8 offset-md-2"> <%#.offset-md-1 は .col-md-9 を 1 カラムぶん右に移動%>
+    <div class="shadow p-3 mb-5 bg-white rounded">
 
-  <h2>いいね一覧</h2>
-  <% @favorite_columns.each do |column|%>
-    <%= link_to column.title, public_column_path(column) %>
-  <% end %>
-  
-<% else %>
-
-  <p>いいねはありません</p>
-  
-<% end %>
+    <h2 class="p-3 mb-2 bg-dark text-white"><%= link_to @user.name, public_user_path(@user) %>さんのお気に入りコラム一覧</h2>
+      <p id="notice"></p>
+      <table class="table table-hover">
+        <tr class="table-secondary">
+          <th>コラム名</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <% @favorite_columns.each do |column|%>
+        <tr class="table-borderless">
+          <td><%= link_to column.title, public_column_path(column) %></td>
+          <td>
+            <% if user_signed_in? %>
+            <% if column.favorited_by?(current_user) %>
+              <p>
+                <%= link_to public_column_favorites_path(column), method: :delete, remote: true do %>
+                  ♥<%= column.favorites.count %>
+                <% end %>
+              </p>
+            <% else %>
+              <p>
+                <%= link_to public_column_favorites_path(column), method: :post, remote: true do %>
+                  ♡<%= column.favorites.count %>
+                <% end %>
+              </p>
+            <% end %>
+            <% else %>
+            ♡<%= column.favorites.count %>
+            <% end %>
+          </td>
+          <td><%= link_to "#{column.post_comments.count} コメント", public_column_path(column.id) %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
