@@ -15,12 +15,32 @@
       </tr>
      </table>
       </div>
-    <div class="col-md-6 offset-1"style="margin-top: 150px;">
+    <div class="col-md-6 offset-1" style="margin-top: 150px;">
     <table class="table">
       <tbody>
         <td>ユーザ名</td><td><%= link_to @column.user.name, public_user_path(@column.user.id) %></td>
-        <tr><td>コラム</td><td><%= @column.body %></td></tr>
         <tr><td>コラム名</td><td><%= @column.title %></td></tr>
+        <tr><td>コラム</td><td><%= @column.body %></td></tr>
+        <tr>
+          <td>
+            <% if @column.favorited_by?(current_user) %>
+            <p>
+              <%= link_to public_column_favorites_path(@column), method: :delete, remote: true do %>
+                ♥ いいね!
+              <% end %>
+              ：<%= @column.favorites.count %>人
+            </p>
+            <% else %>
+            <p>
+              <%= link_to public_column_favorites_path(@column), method: :post, remote: true do %>
+                ♡ いいね!
+              <% end %>
+              ：<%= @column.favorites.count %>人
+            </p>
+            <% end %>
+          </td>
+          <td></td>
+        </tr>
         <tr>
           <td><%= link_to "一覧に戻る", public_columns_path, class: "btn btn-outline-success" %></td>
           <% if @column.user == current_user %>
@@ -34,8 +54,15 @@
       </tbody>
     </table>
     </div>
+
     <div>
-      <p>コメント件数：<%= @column.post_comments.count %></p>
+      <%= form_with model: [:public, @column, @post_comment] do |f| %>
+        <%= f.text_area :comment, rows: '3', placeholder: "コメントをここに" %>
+        <%= f.submit "送信する" %>
+      <% end %>
+      
+      <p>コメント：<%= @column.post_comments.count %>件</p>
+      
       <% @column.post_comments.each do |post_comment| %>
         <%= post_comment.user.name %>
         <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
@@ -44,25 +71,7 @@
         <% end %>
       <% end %>
     </div>
-    <div>
-      <%= form_with model: [:public, @column, @post_comment] do |f| %>
-        <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-        <%= f.submit "送信する" %>
-      <% end %>
-      <% if @column.favorited_by?(current_user) %>
-        <p>
-          <%= link_to public_column_favorites_path(@column), method: :delete, remote: true do %>
-            ♥<%= @column.favorites.count %> いいね
-          <% end %>
-        </p>
-          <% else %>
-        <p>
-          <%= link_to public_column_favorites_path(@column), method: :post, remote: true do %>
-            ♡<%= @column.favorites.count %> いいね
-          <% end %>
-        </p>
-      <% end %>
-    </div>
+      
   </div>
   </div>
 </div>
