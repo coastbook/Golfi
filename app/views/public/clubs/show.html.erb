@@ -15,13 +15,13 @@
         <tr><td>名前</td><td><%= @club.club_name %></td></tr>
         <tr>
           <td><%= link_to "一覧に戻る", public_clubs_path, class: "btn btn-outline-success" %></td>
-          <%# if @club.user == current_user %>
+          <% if @club.user_id == current_user.id %>
             <td><%= link_to '編集する', edit_public_club_path(@club.id), class: "btn btn-outline-success" %></td>
             <td><%= link_to "削除", public_club_path(@club), class: "btn btn-outline-success", method: :delete %></td>
-          <%# else %>
-            <!--<td></td>-->
-            <!--<td></td>-->
-          <%# end %>
+          <% else %>
+            <td></td>
+            <td></td>
+          <% end %>
         </tr>
       </tbody>
     </table>
