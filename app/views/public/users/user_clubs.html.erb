@@ -18,7 +18,7 @@
         <% @clubs.each do |club| %>
         <tr class="table-borderless">
           <td><%= link_to club.club_type, public_club_path(club) %></td>
-          <td><%= link_to club.club_name %></td>
+          <td><%= link_to club.club_name, public_club_path(club) %></td>
         </tr>
         <% end %>
         
