@@ -1,5 +1,5 @@
 class Public::ColumnsController < ApplicationController
-  before_action :authenticate_user!, only: [:show,:new,:create,:edit,:update,:destroy]
+  before_action :ensure_correct_user, only: [:new,:create,:edit,:update,:destroy]
 
   def index
     @columns = Column.all.page(params[:page]).per(10)
@@ -49,6 +49,14 @@ class Public::ColumnsController < ApplicationController
 
   def column_params
   	params.require(:column).permit(:title,:body,:is_active,:image)
+  end
+
+  def ensure_correct_user
+    @column = Column.find(params[:id])
+    if @column.user_id != current_user.id
+      flash[:notice] = "権限がありません"
+      redirect_to public_columns_path
+    end
   end
 
 end
