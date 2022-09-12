@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  
+  has_many_attached :avatars
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
@@ -42,6 +45,35 @@ class User < ApplicationRecord
       @user = User.where("name LIKE?","%#{word}%")
     else
       @user = User.all
+    end
+  end
+  
+  validate :avatar_type, :avatar_size, :avatar_length
+
+  private
+
+  def avatar_type
+    avatars.each do |avatar|
+      if !avatar.blob.content_type.in?(%('image/jpeg image/png'))
+        avatar.purge
+        errors.add(:avatars, 'はjpegまたはpng形式でアップロードしてください')
+      end
+    end
+  end
+
+  def avatar_size
+    avatars.each do |avatar|
+      if avatar.blob.byte_size > 5.megabytes
+        avatar.purge
+        errors.add(:avatars, "は1つのファイル5MB以内にしてください")
+      end
+    end
+  end
+
+  def avatar_length
+    if avatars.length > 4
+      avatars.purge
+      errors.add(:avatars, "は4枚以内にしてください")
     end
   end
   
