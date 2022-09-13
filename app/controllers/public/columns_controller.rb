@@ -1,4 +1,5 @@
 class Public::ColumnsController < ApplicationController
+  before_action :authenticate_user!, only: [:show,:new,:create,:edit,:update,:destroy]
   before_action :ensure_correct_user, only: [:edit,:update,:destroy]
 
   def index
