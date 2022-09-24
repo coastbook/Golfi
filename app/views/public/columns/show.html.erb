@@ -27,20 +27,18 @@
             <% if @column.favorited_by?(current_user) %>
             <p>
               <%= link_to public_column_favorites_path(@column), class: "btn btn-danger", method: :delete, remote: true do %>
-                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart"></i> <%= @column.favorites.count %>
               <% end %>
-
             </p>
             <% else %>
             <p>
               <%= link_to public_column_favorites_path(@column), class: "btn btn-outline-secondary", method: :post, remote: true do %>
-                <i class="far fa-heart"></i>
+                <i class="far fa-heart"></i> <%= @column.favorites.count %>
               <% end %>
-
             </p>
             <% end %>
           </td>
-          <td>Like：<%= @column.favorites.count %></td>
+          <td></td>
         </tr>
         <tr>
           <td class="col-md-1"><%= link_to "一覧に戻る", public_columns_path, class: "btn btn-outline-success" %></td>
@@ -66,7 +64,7 @@
 
       <% @column.post_comments.each do |post_comment| %>
         <br><%= link_to post_comment.user.name, public_user_path(post_comment.user.id) %>
-        <%= post_comment.created_at.strftime('%Y/%m/%d(%a) %T') %>
+        <%= post_comment.created_at.strftime('%Y/%m/%d(%a) %X') %>
 
         <br><%= post_comment.comment %>
         <% if post_comment.user == current_user %>
