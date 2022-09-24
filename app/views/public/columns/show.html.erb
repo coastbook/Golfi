@@ -62,7 +62,7 @@
         <%= f.submit "送信する" %>
       <% end %>
 
-      <p>コメント：<%= @column.post_comments.count %>件</p>
+      <p>Comment：<i class="far fa-comment"></i> <%= @column.post_comments.count %></p>
 
       <% @column.post_comments.each do |post_comment| %>
         <%= post_comment.user.name %>
