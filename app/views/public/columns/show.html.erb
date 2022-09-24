@@ -26,21 +26,21 @@
           <td>
             <% if @column.favorited_by?(current_user) %>
             <p>
-              <%= link_to public_column_favorites_path(@column), method: :delete, remote: true do %>
-                ♥ Like
+              <%= link_to public_column_favorites_path(@column), class: "btn btn-danger", method: :delete, remote: true do %>
+                <i class="fa fa-heart"></i>
               <% end %>
 
             </p>
             <% else %>
             <p>
-              <%= link_to public_column_favorites_path(@column), method: :post, remote: true do %>
-                ♡ Like
+              <%= link_to public_column_favorites_path(@column), class: "btn btn-outline-secondary", method: :post, remote: true do %>
+                <i class="far fa-heart"></i>
               <% end %>
 
             </p>
             <% end %>
           </td>
-          <td>：<%= @column.favorites.count %>人</td>
+          <td>Like：<%= @column.favorites.count %></td>
         </tr>
         <tr>
           <td class="col-md-1"><%= link_to "一覧に戻る", public_columns_path, class: "btn btn-outline-success" %></td>
