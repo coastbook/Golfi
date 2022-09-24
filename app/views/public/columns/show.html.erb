@@ -65,15 +65,15 @@
       <p>Comment：<i class="far fa-comment"></i> <%= @column.post_comments.count %></p>
 
       <% @column.post_comments.each do |post_comment| %>
-        <br><%= post_comment.user.name %>
+        <br><%= link_to post_comment.user.name, public_user_path(post_comment.user.id) %>
         <%= post_comment.created_at.strftime('%Y/%m/%d') %>
-        
+
         <br><%= post_comment.comment %>
         <% if post_comment.user == current_user %>
           <%= link_to "削除", public_column_post_comment_path(post_comment.column, post_comment), class: "btn btn-outline-danger", method: :delete %>
         <% end %>
         <br>----------------------------------------------------------------------------------
-        
+
       <% end %>
     </div>
 
