@@ -4,42 +4,23 @@
 
  
   <h2 class="p-3 mb-2 bg-dark text-white">コラム一覧</h2>
-  <h1 class="text-right">
-    <%= link_to "＋　新規追加", new_admin_column_path, class: "btn btn-dark rounded-pill" %>
-  </h1>
   
       <p id="notice"></p>
       <table class="table table-hover">
         <tr class="table-secondary">
-          <th>ユーザ名</th>
-          <th>コラム名</th>
-          <th></th>
-          <th></th>
+          <th class="col-md-2">Name</th>
+          <th class="col-md-6">Title</th>
+          <th class="col-md-1"></th>
+          <th class="col-md-1"></th>
         </tr>
           <% @columns.each do |column| %>
             <tr class="table-borderless">
               <td><%= link_to column.user.name, admin_user_path(column.user.id) %></td>
               <td><%= link_to column.title, admin_column_path(column) %></td>
               <td>
-                <% if user_signed_in? %>
-                  <% if column.favorited_by?(current_user) %>
-                    <p>
-                      <%= link_to public_column_favorites_path(column), method: :delete, remote: true do %>
-                        ♥<%= column.favorites.count %>
-                      <% end %>
-                    </p>
-                  <% else %>
-                    <p>
-                      <%= link_to public_column_favorites_path(column), method: :post, remote: true do %>
-                        ♡<%= column.favorites.count %>
-                      <% end %>
-                    </p>
-                  <% end %>
-                <% else %>
-                  ♡<%= column.favorites.count %>
-                <% end %>
+                <i class="far fa-heart"></i><%= column.favorites.count %>
               </td>
-              <td><%= link_to "#{column.post_comments.count} コメント", admin_column_path(column.id) %></td>
+              <td><i class="far fa-comment"></i><%= link_to "#{column.post_comments.count}", admin_column_path(column.id) %></td>
             </tr>
             <% end %>
       </table>

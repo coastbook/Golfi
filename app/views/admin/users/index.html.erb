@@ -7,17 +7,17 @@
   <table class="table table-hover">
     <thead>
       <tr class="table-secondary">
-        <th>ユーザID</th>
-        <th>氏名</th>
-        <th>メールアドレス</th>
+        <th>ID</th>
+        <th>Name</th>
+        <th>e-mail</th>
       </tr>
     </thead>
       <% @users.each do |user| %><%# @publics = Public.allですべてのPublicユーザーの情報を取得して、順番に並べて表示 %>
     <tbody>
       <tr>
-        <td><%= user.id %></td>
-        <td><%= link_to user.name, admin_user_path(user.id) %></td>
-        <td><%= user.email %></td>
+        <td class="col-md-1"><%= user.id %></td>
+        <td class="col-md-2"><%= link_to user.name, admin_user_path(user.id) %></td>
+        <td class="col-md-3"><%= user.email %></td>
       </tr>
       <% end %>
     </tbody>

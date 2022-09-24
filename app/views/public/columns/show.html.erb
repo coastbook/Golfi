@@ -19,7 +19,7 @@
     <div class="col-md-8 offset-1" style="margin-top: 150px;">
     <table class="table">
       <tbody>
-        <tr><td>User</td><td><%= link_to @column.user.name, public_user_path(@column.user.id) %></td></tr>
+        <tr><td>Name</td></td><td><%= link_to @column.user.name, public_user_path(@column.user.id) %></td></tr>
         <tr><td>Title</td><td><%= @column.title %></td></tr>
         <tr><td>Column</td><td><%= @column.body %></td></tr>
         <tr>
@@ -66,13 +66,11 @@
       <% @column.post_comments.each do |post_comment| %>
         <br><%= link_to post_comment.user.name, public_user_path(post_comment.user.id) %>
         <%= post_comment.created_at.strftime('%Y/%m/%d(%a) %X') %>
-
         <br><%= post_comment.comment %>
         <% if post_comment.user == current_user %>
           <%= link_to "削除", public_column_post_comment_path(post_comment.column, post_comment), class: "btn btn-outline-danger", method: :delete %>
         <% end %>
         <br>----------------------------------------------------------------------------------
-
       <% end %>
     </div>
 
