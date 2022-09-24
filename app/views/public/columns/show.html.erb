@@ -43,11 +43,12 @@
         <tr>
           <td class="col-md-1"><%= link_to "一覧に戻る", public_columns_path, class: "btn btn-outline-success" %></td>
           <% if @column.user == current_user %>
-            <td class="col-md-2"><%= link_to '編集する', edit_public_column_path(@column.id), class: "btn btn-outline-success" %></td>
-            <td class="col-md-1"><%= link_to "削除", public_column_path(@column), class: "btn btn-outline-danger", method: :delete %></td>
+            <td class="col-md-3">
+              <%= link_to '編集する', edit_public_column_path(@column.id), class: "btn btn-outline-success w-75" %>
+              <%= link_to "削除", public_column_path(@column), class: "btn btn-outline-danger", method: :delete %>
+            </td>
           <% else %>
-            <td class="col-md-2"></td>
-            <td class="col-md-1"></td>
+            <td class="col-md-3"></td>
           <% end %>
         </tr>
       </tbody>
