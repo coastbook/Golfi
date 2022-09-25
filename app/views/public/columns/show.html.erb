@@ -1,11 +1,14 @@
 <div class="container" style="margin-top: 50px;">
   <div class="shadow p-3 mb-5 bg-white rounded">
+    
+  <h2 class="p-3 mb-2 bg-dark text-white">コラム詳細</h2>
+  
   <div class="row">
 
     <div class="col-md-3" style="text-align: left;">
 　　　<table class="table">
-      <h2 class="p-3 mb-2 bg-dark text-white">コラム詳細</h2>
     </div>
+    
     <div class="col-md-8", style="margin-top: 50px;">
       <tr>
       <% if @column.image.attached? %>
@@ -57,7 +60,7 @@
 
     <div>
       <%= form_with model: [:public, @column, @post_comment] do |f| %>
-        <%= f.text_area :comment, rows: '3', placeholder: "コメントをここに記入してください" %>
+        <%= f.text_area :comment, rows: '3', placeholder: "コメントを記入してください" %>
         <%= f.submit "送信する" %>
       <% end %>
 
