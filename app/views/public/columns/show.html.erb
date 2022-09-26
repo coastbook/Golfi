@@ -58,9 +58,9 @@
     </table>
     </div>
 
-    <div>
+    <div style="text-align: left;margin-left:40px;margin-top:40px;left;margin-right:400px;margin-bottom:20px;">
       <%= form_with model: [:public, @column, @post_comment] do |f| %>
-        <%= f.text_area :comment, rows: '3', placeholder: "コメントを記入してください" %>
+        <%= f.text_area :comment, rows: '3', cols: '60', placeholder: "コメントを記入してください" %>
         <%= f.submit "送信する" %>
       <% end %>
 
@@ -73,7 +73,7 @@
         <% if post_comment.user == current_user %>
           <%= link_to "削除", public_column_post_comment_path(post_comment.column, post_comment), class: "btn btn-outline-danger", method: :delete %>
         <% end %>
-        <br>----------------------------------------------------------------------------------
+        <br>--------------------------------------------------------------------------------------------
       <% end %>
     </div>
 
