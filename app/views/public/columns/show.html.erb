@@ -9,17 +9,17 @@
 　　　<table class="table">
     </div>
     
-    <div class="col-md-8", style="margin-top: 50px;">
+    <div class="col-md-8", style="margin-top: 25px;">
       <tr>
       <% if @column.image.attached? %>
-        <%= image_tag @column.image, size: "350x350" %>
+        <%= image_tag @column.image, size: "325x325" %>
       <% else %>
-        <%= image_tag asset_path("no_image.jpg"), size: "330x330" %>
+        <%= image_tag asset_path("no_image.jpg"), size: "325x325" %>
       <% end %>
       </tr>
      </table>
       </div>
-    <div class="col-md-8 offset-1" style="margin-top: 150px;">
+    <div class="col-md-8 offset-1" style="margin-top: 50px;">
     <table class="table">
       <tbody>
         <tr><td>Name</td></td><td><%= link_to @column.user.name, public_user_path(@column.user.id) %></td></tr>
