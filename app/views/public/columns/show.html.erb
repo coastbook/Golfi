@@ -44,7 +44,7 @@
           <td></td>
         </tr>
         <tr>
-          <td class="col-md-1"><%= link_to "一覧に戻る", public_columns_path, class: "btn btn-outline-success" %></td>
+          <td class="col-md-1"><%= link_to "一覧に戻る", :back, class: "btn btn-outline-success" %></td>
           <% if @column.user == current_user %>
             <td class="col-md-3">
               <%= link_to '編集する', edit_public_column_path(@column.id), class: "btn btn-outline-success w-75" %>
