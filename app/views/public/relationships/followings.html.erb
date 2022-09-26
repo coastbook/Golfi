@@ -2,7 +2,7 @@
   <div class="col-md-8 offset-md-2"> 
     <div class="shadow p-3 mb-5 bg-white rounded">
 
-    <h2 class="p-3 mb-2 bg-dark text-white">Follow Users</h2>
+    <h2 class="p-3 mb-2 bg-dark text-white"><%= link_to @user.name, public_user_path(@user) %>さんのFollow Users</h2>
     <p id="notice"></p>
     <table class="table table-hover">
 
