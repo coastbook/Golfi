@@ -12,9 +12,9 @@
     <div class="col-md-8", style="margin-top: 50px;">
       <tr>
       <% if @column.image.attached? %>
-        <%= image_tag @column.image, size: "250x250" %>
+        <%= image_tag @column.image, size: "350x350" %>
       <% else %>
-        <%= image_tag asset_path("no_image.jpg"), size: "250x250" %>
+        <%= image_tag asset_path("no_image.jpg"), size: "330x330" %>
       <% end %>
       </tr>
      </table>
