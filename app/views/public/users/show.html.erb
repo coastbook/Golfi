@@ -38,6 +38,9 @@
             <p><u><%=link_to "クラブセット", user_clubs_public_user_path(@user) %></u></p>
             <p><u><%=link_to "コラム一覧", user_columns_public_user_path(@user) %></u></p>
             <p><u><%=link_to "お気に入りコラム", favorites_public_user_path(@user) %></u></p>
+            <div>
+              
+            </div>
             <% if @user == current_user %>
               <td><%= link_to "編集する", edit_public_user_path(current_user), class: "btn btn-outline-success w-75" %></td>
               <td><%= link_to "削除", public_user_path(@user), class: "btn btn-outline-danger", method: :delete %></td>
