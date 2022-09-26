@@ -13,7 +13,7 @@ class Public::ClubsController < ApplicationController
     @club = Club.new(club_params)
     @club.user_id = current_user.id
     if @club.save!
-      redirect_back(fallback_location: root_path)
+      redirect_to user_clubs_public_user_path(@club.user_id)
       flash[:notice] = '新しいクラブを登録しました。'
     else
     render "new"
@@ -26,12 +26,13 @@ class Public::ClubsController < ApplicationController
 
   def edit
     @club = Club.find(params[:id])
+    
   end
 
   def update
     @club = Club.find(params[:id])
     if @club.update(club_params)
-      redirect_back(fallback_location: root_path)
+      redirect_to user_clubs_public_user_path(@club.user_id)
       flash[:notice] = 'クラブを編集しました'
     else
       render :"show"
@@ -41,7 +42,7 @@ class Public::ClubsController < ApplicationController
   def destroy
     @club = Club.find(params[:id])
     @club.destroy
-    redirect_to public_clubs_path
+    redirect_to user_clubs_public_user_path(@club.user_id)
   end
 
   private
