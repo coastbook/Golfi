@@ -17,15 +17,16 @@
       </thead>
       <% @users.each do |user| %>
         <tr class="table-borderless">
-          <td>
-            <% if user_signed_in? %>
-              <%= link_to user.name, public_user_path(user.id) %>
-            <% elsif admin_signed_in? %>
-              <%= link_to user.name, admin_user_path(user.id) %>
-            <% end %>
-          </td>
-          <td>follows <u><%= link_to user.followings.count, public_user_followings_path(user_id: user.id) %></u></td>
-          <td>followers <u><%= link_to user.followers.count, public_user_followers_path(user_id: user.id) %></u></td>
+          <% if user_signed_in? %>
+            <td><%= link_to user.name, public_user_path(user.id) %></td>
+            <td>follows <u><%= link_to user.followings.count, public_user_followings_path(user_id: user.id) %></u></td>
+            <td>followers <u><%= link_to user.followers.count, public_user_followers_path(user_id: user.id) %></u></td>
+          <% elsif admin_signed_in? %>
+            <td><%= link_to user.name, admin_user_path(user.id) %></td>
+            <td>follows <%= user.followings.count %></td>
+            <td>followers <%= user.followers.count %></td>
+            
+          <% end %>
         </tr>
       <% end %>
      
@@ -41,7 +42,13 @@
       </thead>
       <% @columns.each do |column| %>
       <tr class="table-borderless">
-        <td><%= link_to column.title, public_column_path(column) %></td>
+        <td>
+          <% if user_signed_in? %>
+            <%= link_to column.title, public_column_path(column) %>
+          <% elsif admin_signed_in? %>
+          　<%= link_to column.title, admin_column_path(column) %>
+          <% end %>
+        </td>
         <td>
           <% if user_signed_in? %>
             <% if column.favorited_by?(current_user) %>
