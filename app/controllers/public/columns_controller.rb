@@ -17,7 +17,7 @@ class Public::ColumnsController < ApplicationController
       redirect_to public_column_path(@column)
       flash[:notice] = '新しいコラムを登録しました。'
     else
-    render "new"
+      render "new"
     end
   end
 
