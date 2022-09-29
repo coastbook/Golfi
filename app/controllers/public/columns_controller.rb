@@ -13,11 +13,11 @@ class Public::ColumnsController < ApplicationController
   def create
     @column = Column.new(column_params)
     @column.user_id = current_user.id
-    if @column.save!
+    if @column.save
       redirect_to public_column_path(@column)
       flash[:notice] = '新しいコラムを登録しました。'
     else
-      render "new"
+      render action: :new
     end
   end
 
