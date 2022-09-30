@@ -3,6 +3,16 @@
     <div class="shadow p-3 mb-5 bg-white rounded">
 
       <h2 class="p-3 mb-2 bg-dark text-white">クラブ新規登録</h2>
+      <% if @club.errors.any? %>
+        <%= @club.errors.count %>件のエラー
+        <div id="error_explanation">
+          <ul>
+            <% @club.errors.full_messages.each do |message| %>
+              <li class="error_message"><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
       <p id="notice"></p>
         <%= form_with model:@club, url: public_clubs_path, method: :post do |f| %>
           <div class="form-group", style="text-align: center;">

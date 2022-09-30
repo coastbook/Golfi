@@ -12,11 +12,11 @@ class Public::ClubsController < ApplicationController
   def create
     @club = Club.new(club_params)
     @club.user_id = current_user.id
-    if @club.save!
+    if @club.save
       redirect_to user_clubs_public_user_path(@club.user_id)
       flash[:notice] = '新しいクラブを登録しました。'
     else
-    render "new"
+      render action: :new
     end
   end
 
